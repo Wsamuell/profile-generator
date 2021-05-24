@@ -25,10 +25,11 @@ function startQuestion() {
             }
         },
     ]).then((answers) => {
-        const teamName = answers.teamName;
+        const teamName = answers.teamname;
         completedTeam.push(teamName);
         newManager();
     })
+    
     console.log(completedTeam);
 
 };
