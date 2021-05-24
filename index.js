@@ -29,6 +29,8 @@ function startQuestion() {
         completedTeam.push(teamName);
         newManager();
     })
+    console.log(completedTeam);
+
 };
 
 // Manager questions to be displayed
@@ -83,7 +85,6 @@ function newManager() {
     })
 
 };
-
 // Ask if the Manger would like to add a new employee
 function newGuy() {
     inquirer.prompt([
@@ -112,7 +113,7 @@ function newGuy() {
                 newIntern();
                 break;
 
-            case "All Done for now":
+            case "All Done for now!":
                 roundUp();
                 break;
         }
@@ -218,7 +219,7 @@ function newIntern() {
         const employee = new Intern(name, id, email, school, role);
         completedTeam.push(employee);
         newGuy();
-    })
+    });
 }
 
 
@@ -251,6 +252,7 @@ function roundUp() {
 `
     generateHTML.push(startHTML);
     for (let i = 1; i < completedTeam.length; i++) {
+    
         let employeeCard = `
         <div class="card-header"><br> ${completedTeam.role} <br></div>
 <div class="card-body">
@@ -260,24 +262,24 @@ function roundUp() {
         <li class="list-group-item">Email: <br> <a href="mailto:${completedTeam.email}">${completedTeam.email}</a></li>
 `
         if (completedTeam[i].officenumber) {
-            object += `
+            employeeCard += `
     <li class="list-group-item">Office Number: ${completedTeam.officenumber} </li>
     </ul >`
 
         } else if (completedTeam[i].github) {
-            object += `
+            employeeCard += `
     <li class="list-group-item">Github: <a href="https://github.com/${completedTeam[i].github}">${completedTeam[i].github}</a> </li>
     </ul >`
         } else {
-            object += `
+            employeeCard += `
     <li class="list-group-item">School Name: ${completedTeam.school} </li>
     </ul >`
         }
-        object += `
+        employeeCard += `
         </div >
         </div >
         `
-        generateHTML.push(object);
+        generateHTML.push(employeeCard);
 
     }
 
@@ -292,8 +294,6 @@ function roundUp() {
             `
 
     generateHTML.push(stopHTML);
-
-
 
 
         fs.writeFile(`./${completedTeam.teamName}.html`, generateHTML.join(""), (err) => {
