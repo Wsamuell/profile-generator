@@ -26,11 +26,9 @@ function startQuestion() {
         },
     ]).then((answers) => {
         const teamName = answers.teamname;
-        completedTeam.push(teamName);
         newManager();
+        completedTeam.push(teamName);
     })
-    
-    console.log(completedTeam);
 
 };
 
@@ -81,8 +79,9 @@ function newManager() {
         const email = answers.email;
         const officenumber = answers.officenumber;
         const employee = new Manager(name, id, email, officenumber, role);
-        completedTeam.push(employee);
         newGuy();
+        completedTeam.push(employee);
+
     })
 
 };
@@ -167,8 +166,9 @@ function newEngineer() {
         const email = answers.email;
         const github = answers.github;
         const employee = new Engineer(name, id, email, github, role);
-        completedTeam.push(employee);
         newGuy();
+        completedTeam.push(employee);
+
     })
 };
 
@@ -218,8 +218,8 @@ function newIntern() {
         const email = answers.email;
         const school = answers.school;
         const employee = new Intern(name, id, email, school, role);
-        completedTeam.push(employee);
         newGuy();
+        completedTeam.push(employee);
     });
 }
 
@@ -246,34 +246,35 @@ function roundUp() {
     
     <body>
         <header class="container-fluid">
-            <h1> ${completedTeam.teamName} </h1>
+            <h1> ${completedTeam[0]} </h1>
         </header>
         <section class="container">
             <article class="card-deck">
 `
     generateHTML.push(startHTML);
     for (let i = 1; i < completedTeam.length; i++) {
-    
+
         let employeeCard = `
-        <div class="card-header"><br> ${completedTeam.role} <br></div>
-<div class="card-body">
-    <h5 class="card-title"> ${completedTeam.name} </h5>
+        <div class="card border-info mb-3" style="max-width: 18rem;">
+        <div class="card-header"><br> ${completedTeam[i].role} <br></div>
+        <div class="card-body text-info">
+        <h5 class="card-title"> ${completedTeam[i].name} </h5>
     <ul class="list-group">
-        <li class="list-group-item">ID: ${completedTeam.id} </li>
-        <li class="list-group-item">Email: <br> <a href="mailto:${completedTeam.email}">${completedTeam.email}</a></li>
+        <li class="list-group-item">ID: ${completedTeam[i].id} </li>
+        <li class="list-group-item">Email: <br> <a href="mailto:${completedTeam[i].email}">${completedTeam[i].email}</a></li>
 `
         if (completedTeam[i].officenumber) {
             employeeCard += `
-    <li class="list-group-item">Office Number: ${completedTeam.officenumber} </li>
+    <li class="list-group-item">Office Number: ${completedTeam[i].officenumber} </li>
     </ul >`
 
         } else if (completedTeam[i].github) {
             employeeCard += `
     <li class="list-group-item">Github: <a href="https://github.com/${completedTeam[i].github}">${completedTeam[i].github}</a> </li>
     </ul >`
-        } else {
+        } else if (completedTeam[i].school){
             employeeCard += `
-    <li class="list-group-item">School Name: ${completedTeam.school} </li>
+    <li class="list-group-item">School Name: ${completedTeam[i].school} </li>
     </ul >`
         }
         employeeCard += `
@@ -285,7 +286,7 @@ function roundUp() {
     }
 
     const stopHTML =
-            `
+        `
              </article >
         </section >
     
@@ -297,9 +298,9 @@ function roundUp() {
     generateHTML.push(stopHTML);
 
 
-        fs.writeFile(`./${completedTeam.teamName}.html`, generateHTML.join(""), (err) => {
-            if (err) throw err;
-            console.log('The file has been saved!');
-        });
+    fs.writeFile(`./dist/team.html`, generateHTML.join(""), (err) => {
+        if (err) throw err;
+        console.log('The file has been saved!');
+    });
 }
 startQuestion();

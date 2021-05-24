@@ -9,3 +9,9 @@ header {
     color: white;
     margin-bottom: 50px;
 }
+.card-header {
+    font-size: 40px;
+}
+.card-title {
+    font-size: 30px;
+}

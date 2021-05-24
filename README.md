@@ -10,17 +10,13 @@ https://github.com/Wsamuell/README-generator
 Build a Node.js command-line application that takes in information about employees on a software engineering team and generates an HTML webpage that displays summaries for each person
 
 ## Screenshot Images
-Demonstration GIF:
 ![HTML page on the web for Generator]()
 
-The generated HTML page:
-
-![Sample Generated Page]()
 
 ## Testing
 Testing was performed for each and every Employee character to make sure they can return answers as an object
 
-![Testing screenshots]()
+![Testing screenshots](./assets/img/sc-test.png)
 
 ## Installation 
 Once app is downloaded or cloned from Github, PLEASE run NPM install to install all node properties needed to run the app.
