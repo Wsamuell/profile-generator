@@ -1,10 +1,21 @@
 const HTMLTemplate = data => {
-    const {name, role, id, email, officenumber, addNew, github, school } = data;
-    
-    return
-
-// Header HTML     
-    `
+    // you passed teamMembers into here as a set of arguments objects with the types of employees
+    // create a flow for creating an individual card for each item in the data array
+    // put the if statements inside a loop
+    // 
+    function loopFunction(data) {
+        for (let i = 0; i < data.length; i++) {
+            if (data[i] === "Manager") {
+                manager
+            } else if (data[i] === "Engineer") {
+                engineer
+            } else {
+                intern
+            }
+        }
+        // Header HTML 
+        return 
+        `
 
     <!DOCTYPE html>
     <html lang="en">
@@ -26,59 +37,16 @@ const HTMLTemplate = data => {
         </header>
         <section class="container">
             <article class="card-deck">
+            ${loopFunction(manager, engineer, intern)}
             `
-// Using fs to write file into new HTML 
-fs.writeFile('generate.html', data, (err) => {
-    if (err) throw err;
-    console.log('The file has been saved!');
-  });
-  
-// Creating each new employee based on chosen inputs
-            `
-
-    
-                <div class="card border-info mb-3" style="max-width: 18rem;">
-                    <div class="card-header"><br> Name <br></div>
-                    <div class="card-body">
-                        <h5 class="card-title">Primary card title</h5>
-                        <ul class="list-group">
-                            <li class="list-group-item">ID: </li>
-                            <li class="list-group-item">Email: </li>
-                            <li class="list-group-item">Office Number</li>
-                        </ul>
-                    </div>
-                </div>
-    
-                <div class="card bg-light mb-3" style="max-width: 18rem;">
-                    <div class="card-header"><br> Name <br></div>
-                    <div class="card-body">
-                        <h5 class="card-title">Primary card title</h5>
-                        <ul class="list-group">
-                            <li class="list-group-item">ID: </li>
-                            <li class="list-group-item">Email: </li>
-                            <li class="list-group-item">Github: </li>
-                        </ul>
-                    </div>
-                </div>
-    
-                <div class="card border-info mb-3" style="max-width: 18rem;">
-                    <div class="card-header"><br> Name <br></div>
-                    <div class="card-body">
-                        <h5 class="card-title">Primary card title</h5>
-                        <ul class="list-group">
-                            <li class="list-group-item">ID: </li>
-                            <li class="list-group-item">Email: </li>
-                            <li class="list-group-item">School: </li>
-                        </ul>
-                    </div>
-                </div>
-    
-            </article>
+        // Creating each new employee based on chosen inputs
+            `          
+             </article>
         </section>
     
     </body>
     
     </html>
-
 `}
-module.exports = HTMLTemplate
+}
+    module.exports = HTMLTemplate
