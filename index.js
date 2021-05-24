@@ -4,7 +4,6 @@ const Employee = require('./lib/Employee');
 const Engineer = require('./lib/Engineer');
 const Manager = require('./lib/Manager');
 const Intern = require('./lib/Intern');
-const HTMLTemplate = require('./dist/generateHTML');
 
 // installed packages
 const inquirer = require('inquirer');
@@ -297,7 +296,7 @@ function roundUp() {
 
 
 
-        fs.writeFile(`./dist/${completedTeam.teamName}.html`, generateHTML.join(""), (err) => {
+        fs.writeFile(`./${completedTeam.teamName}.html`, generateHTML.join(""), (err) => {
             if (err) throw err;
             console.log('The file has been saved!');
         });
